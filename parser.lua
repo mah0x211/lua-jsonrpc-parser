@@ -118,7 +118,7 @@ end
 -- @param params
 -- @return ok
 local function verifyParams( params )
-    return params == 'nil' or type( params ) == 'table';
+    return params == nil or type( params ) == 'table';
 end
 
 
