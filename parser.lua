@@ -57,7 +57,14 @@ local EERROR = -32603;
 -- Reserved for implementation-defined server-errors.
 local ERSVD_MIN = -32000;
 local ERSVD_MAX = -32099;
-
+--- default message
+local DEFAULT_MESSAGE = {
+    [EPARSE] = 'Invalid JSON was received',
+    [EINVAL] = 'Invalid Request',
+    [ENOENT] = 'Method not found',
+    [EPARAMS] = 'Invalid params',
+    [EERROR] = 'Internal JSON-RPC error'
+};
 
 
 --- isFinite
@@ -279,7 +286,7 @@ local function makeError( code, msg, data, id )
         jsonrpc = "2.0",
         error = {
             code = code,
-            message = msg,
+            message = msg or DEFAULT_MESSAGE[code],
             data = data
         },
         id = id
