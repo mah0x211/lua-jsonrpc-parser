@@ -87,7 +87,7 @@ end
 -- @param id
 -- @return ok
 local function verifyIdent( id )
-    return isInt( id ) or type( id ) == 'string' and id:find( IDENT_PAT );
+    return isInt( id ) or type( id ) == 'string' and id:find( IDENT_PAT ) ~= nil;
 end
 
 
