@@ -162,7 +162,7 @@ local function verifyRequest( json )
     return verifyVersion( json.jsonrpc ) and
            verifyMethod( json.method ) and
            verifyParams( json.params ) and
-           verifyIdent( json.id );
+           ( json.id == nil or verifyIdent( json.id ) );
 end
 
 
