@@ -267,8 +267,9 @@ end
 -- @return err
 local function makeError( code, msg, data, id )
     if not isInt( code ) or
-       not (( code >= EINVAL and code <= EERROR ) or
-            ( code >= ERSVD_MIN and code <= ERSVD_MAX )) then
+       not ( code == EPARSE or
+            ( code <= EINVAL and code >= EERROR ) or
+            ( code <= ERSVD_MIN and code >= ERSVD_MAX )) then
         return nil, 'code must be -32700, -32600 to -32603 or -32000 to -32099';
     elseif msg ~= nil and type( msg ) ~= 'string' then
         return nil, 'msg must be nil or string';
@@ -292,6 +293,7 @@ local function makeError( code, msg, data, id )
         id = id
     });
 end
+
 
 return {
     --- constants
