@@ -323,6 +323,7 @@ return {
     parseResponse = parseResponse,
     makeRequest = makeRequest,
     makeResponse = makeResponse,
-    makeError = makeError
+    makeError = makeError,
+    verifyIdent = verifyIdent
 };
 
