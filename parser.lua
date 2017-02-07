@@ -229,12 +229,12 @@ local function makeRequest( method, params, id )
         return nil, 'id must be nil, integer or string ' .. IDENT_PAT;
     end
 
-    return encode({
+    return {
         jsonrpc = "2.0",
         method = method,
         params = params,
         id = id
-    });
+    };
 end
 
 
@@ -250,11 +250,11 @@ local function makeResponse( res, id )
         return nil, 'id must be integer or string ' .. IDENT_PAT;
     end
 
-    return encode({
+    return {
         jsonrpc = "2.0",
         result = res,
         id = id
-    });
+    };
 end
 
 
@@ -283,7 +283,7 @@ local function makeError( code, msg, data, id )
         return nil, 'id must be integer or string ' .. IDENT_PAT;
     end
 
-    return encode({
+    return {
         jsonrpc = "2.0",
         error = {
             code = code,
@@ -291,7 +291,7 @@ local function makeError( code, msg, data, id )
             data = data
         },
         id = id
-    });
+    };
 end
 
 
@@ -319,6 +319,8 @@ return {
     ERSVD_MAX = ERSVD_MAX,
 
     --- APIs
+    encode = encode,
+    decode = decode,
     parseRequest = parseRequest,
     parseResponse = parseResponse,
     makeRequest = makeRequest,
